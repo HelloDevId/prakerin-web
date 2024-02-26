@@ -4,7 +4,7 @@
 <!-- Mirrored from gymove.dexignzone.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Feb 2024 13:34:38 GMT -->
 <head>
     <!-- Title -->
-    <title>Gymove - @yield('title')</title>
+    <title>Prakerin - @yield('title')</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -24,9 +24,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/images/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/images/prakerin1.png') }}">
     <link rel="stylesheet" href="{{ asset('admin/vendor/chartist/css/chartist.min.css') }}">
     <link href="{{ asset('admin/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('admin/new/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/new/datatablesbutton.css') }}">
     <link href="{{ asset('admin/vendor/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
     <!-- Toastr -->
@@ -47,10 +49,10 @@
     <div id="main-wrapper">
 
         <div class="nav-header">
-            <a href="index.html" class="brand-logo" aria-label="Gymove">
-                <img class="logo-abbr" src="{{ asset('admin/images/logo.png') }}" alt="">
-                <img class="logo-compact" src="{{ asset('admin/images/logo-text.png') }}" alt="">
-                <img class="brand-title" src="{{ asset('admin/images/logo-text.png') }}" alt="">
+            <a href="/dashboard" class="brand-logo" aria-label="Gymove">
+                <img class="logo-abbr" src="{{ asset('admin/images/prakerin1.png') }}" alt="">
+                <img class="logo-compact" src="{{ asset('admin/images/text-2.png') }}" alt="">
+                <img class="brand-title" src="{{ asset('admin/images/text-2.png') }}" alt="">
             </a>
 
             <div class="nav-control">
@@ -66,6 +68,53 @@
 
         <div class="content-body default-height">
             @yield('content')
+            <!-- update profil -->
+            <div class="modal fade" id="UpdateProfil">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Profil</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                            </button>
+                        </div>
+                        <form action="/update-profil" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" value="{{ Auth::user()->name }}" name="name" class="form-control" placeholder="John">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="email" value="{{ Auth::user()->email }}" class="form-control" placeholder="John@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" name="password" class="form-control" placeholder="***">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label>Repassword</label>
+                                        <input type="password" name="repassword" class="form-control" placeholder="***">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- update profil -->
         </div>
 
         @include('admin.partials.footer')
@@ -89,12 +138,33 @@
     <!-- All init script -->
     <script src="{{ asset('admin/js/plugins-init/toastr-init.js') }}"></script>
 
+
+
+    {{-- <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/js/tables-datatables-basic.js"></script> --}}
+
+
     <!-- Dashboard 1 -->
     <script src="{{ asset('admin/js/dashboard/dashboard-1.js') }}"></script>
     <script src="{{ asset('admin/js/custom.min.js') }}"></script>
     <script src="{{ asset('admin/js/deznav-init.js') }}"></script>
+
+    {{-- <script src="{{ asset('admin/new/datatable-basic.init.js') }}"></script>
+    <script src="{{ asset('admin/new/jquery.dataTables.js')}}"></script> --}}
+
+
     <script src="{{ asset('admin/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/js/plugins-init/datatables.init.js') }}"></script>
+
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+
     <script>
         function carouselReview() {
             /*  testimonial one function by = owl.carousel.js */

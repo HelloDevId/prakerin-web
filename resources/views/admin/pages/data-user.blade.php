@@ -46,7 +46,7 @@
                             <tbody>
                                 @foreach ($user as $data )
                                 <tr>
-                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $loop->iteration }}</td>
                                     {{-- <td><img class="rounded-circle" width="35" src="{{ asset('admin/images/profile/small/pic1.jpg') }}" alt=""></td> --}}
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->email }}</td>
