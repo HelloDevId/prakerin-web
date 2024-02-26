@@ -3,10 +3,10 @@
 - php artisan migrate:fresh --seed
 - php artisan serve
 
-# Admin Role
+- Admin Role
 admin@gmail.com    
 admin
 
-$ User Role
+- User Role
 user@gmail.com
 user
